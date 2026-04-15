@@ -1,0 +1,69 @@
+.list-container {
+  flex-shrink: 0;
+  background-color: var(--secondary-bg);
+  border-radius: var(--radius-lg);
+  min-width: 300px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  max-height: 100%;
+}
+
+.list-drag-overlay {
+  opacity: 0.5;
+  box-shadow: var(--shadow-lg);
+}
+
+.list-header {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+  cursor: grab;
+  /* Add touch-action to prevent browser scrolling when grabbing */
+  touch-action: none;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-header:active {
+  cursor: grabbing;
+}
+
+.list-cards {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  gap: 0.25rem;
+}
+
+.add-card-btn {
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  border-radius: var(--radius-md);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.add-card-btn:hover {
+  background-color: var(--tertiary-bg);
+  color: var(--text-main);
+}
+
+@media (max-width: 768px) {
+  .list-container {
+    min-width: 100%;
+    max-width: 100%;
+    /* We strip max-height out so vertical columns can naturally grow on mobile without internal clipping */
+    max-height: none; 
+    margin-bottom: 1.5rem;
+  }
+}

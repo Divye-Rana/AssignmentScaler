@@ -1,0 +1,107 @@
+.board-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1rem 2rem;
+  overflow: hidden;
+}
+
+.board-header {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  flex-shrink: 0; 
+}
+
+.board-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.board-header-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.board-lists {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: flex-start;
+  
+  /* Critical for preventing layout bleed */
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 1rem;
+}
+
+.board-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-muted);
+}
+
+.add-list-btn {
+  min-width: 300px;
+  flex-shrink: 0;
+  height: fit-content;
+  padding: 1rem;
+  background-color: var(--secondary-bg);
+  color: var(--text-main);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px dashed var(--border-color);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.add-list-btn:hover {
+  background-color: var(--tertiary-bg);
+}
+
+/* RESPONSIVE FLUID BEHAVIOR */
+@media (max-width: 768px) {
+  .board-container {
+    padding: 0.5rem 1rem;
+  }
+  
+  .board-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .board-header-actions {
+    width: 100%;
+  }
+
+  .board-header-actions select,
+  .board-header-actions input {
+    flex: 1;
+    min-width: 120px;
+  }
+  
+  .board-lists {
+    /* Stacks columns vertically securely with one unified scrollbar */
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    align-items: stretch;
+  }
+
+  .add-list-btn {
+    min-width: 100%;
+    margin-bottom: 4rem; /* Pad the absolute bottom of the scroll view */
+  }
+}

@@ -1,0 +1,44 @@
+.card-container {
+  background-color: var(--tertiary-bg);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  cursor: grab;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card-container:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-hover);
+}
+
+.card-container:active {
+  cursor: grabbing;
+}
+
+.card-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.card-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.card-badge {
+  width: 32px;
+  height: 6px;
+  border-radius: 4px;
+}
+
+/* Specific state for dnd drag overlay */
+.card-drag-overlay {
+  transform: rotate(3deg);
+  box-shadow: var(--shadow-lg);
+  cursor: grabbing;
+}
