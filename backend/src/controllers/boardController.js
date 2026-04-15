@@ -13,17 +13,14 @@ exports.getAllBoards = async (req, res, next) => {
 exports.getBoardById = async (req, res, next) => {
   try {
     const { id } = req.params;
+
     
-    // Get board
     const boardResult = await db.query('SELECT * FROM boards WHERE id = $1', [id]);
     if (boardResult.rows.length === 0) return res.status(404).json({ error: 'Board not found' });
     const board = boardResult.rows[0];
-
-    // Get lists
     const listsResult = await db.query('SELECT * FROM lists WHERE board_id = $1 ORDER BY position ASC', [id]);
     const lists = listsResult.rows;
-
-    // Get cards with members and labels
+    
     const cardsResult = await db.query(`
       SELECT c.*,
         COALESCE(
@@ -57,9 +54,7 @@ exports.getBoardById = async (req, res, next) => {
       ORDER BY c.position ASC
     `, [id]);
     const cards = cardsResult.rows;
-
-    // For labels and members, we can fetch them separately or embed them, 
-    // let's fetch all labels for the board
+    
     const labelsResult = await db.query('SELECT * FROM labels WHERE board_id = $1', [id]);
     const labels = labelsResult.rows;
 
